@@ -1,0 +1,11 @@
+out/
+target/
+*.class
+mysql-connector-j*.jar
+.idea/
+.vscode/
+# Local build outputs, downloaded dependencies, archives, and credentials
+out*/
+*.jar
+*.zip
+.env*

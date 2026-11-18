@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f1">
+  <meta name="description" content="NourishNet connects surplus food with the people who need it.">
+  <title>NourishNet — Food rescue, made simple</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="NourishNet home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M7 20.5c0 8.1 5.8 13.5 13 13.5s13-5.4 13-13.5H7Z" fill="currentColor"/><path d="M5 19.5h30M13 13c0-2.2 2-2.2 2-4.4M20 13c0-2.2 2-2.2 2-4.4M27 13c0-2.2 2-2.2 2-4.4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand-name">nourish<span>net</span><small>FOOD RESCUE NETWORK</small></span>
+      </a>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="overview"><span class="nav-icon">◫</span>Overview</button>
+        <button class="nav-link" id="donate-nav" data-view="donate" hidden><span class="nav-icon">＋</span>Donate food</button>
+        <button class="nav-link" data-view="volunteer"><span class="nav-icon">⌖</span>Find food <span class="nav-count" id="nav-available">0</span></button>
+        <button class="nav-link" data-view="tracking"><span class="nav-icon">↗</span>Track deliveries</button>
+        <button class="nav-link" data-view="notifications"><span class="nav-icon">♧</span>Notifications <span class="nav-count" id="nav-notifications">0</span></button>
+        <button class="nav-link" data-view="reports" id="reports-nav" hidden><span class="nav-icon">▤</span>NGO reports</button>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <strong>Good food. Good neighbours.</strong>
+        <p>Every shared meal is one less meal wasted.</p>
+      </div>
+      <div class="workspace-user">
+        <div class="avatar">NN</div>
+        <div><strong id="sidebar-name">Guest workspace</strong><span id="sidebar-role">Sign in to post or volunteer</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>NourishNet</span><span class="crumb-separator">/</span><strong id="page-crumb">Overview</strong></div>
+        <div class="topbar-right">
+          <span class="connection" id="connection"><i></i><span>Connecting</span></span>
+          <button class="button button-secondary compact" id="login-open">Sign in</button>
+          <button class="button button-primary compact" id="register-open">Create account</button>
+          <span class="account-label" id="account-label" hidden></span>
+          <button class="button button-secondary compact" id="logout-button" hidden>Sign out</button>
+        </div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="view-panel active" data-panel="overview">
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span>COMMUNITY FOOD RESCUE</p>
+              <h1>Good things are <em>growing.</em></h1>
+              <p class="page-lead">A little food shared goes a long way. Here’s what your community is making happen.</p>
+            </div>
+            <div class="welcome-actions">
+              <button class="button button-secondary" data-go="volunteer">Explore donations <span>↗</span></button>
+              <button class="button button-primary donor-only-action" data-go="donate" hidden><span>＋</span> Share food</button>
+            </div>
+          </div>
+
+          <div class="hero-banner">
+            <div class="hero-copy">
+              <span class="hero-kicker"><span class="sparkle">✦</span> SMALL ACTS, FULLER TABLES</span>
+              <h2>Good food deserves<br><span>another story.</span></h2>
+              <p>Connect a surplus meal to someone who needs it. Your next good thing starts here.</p>
+              <button class="hero-link donor-only-action" data-go="donate" hidden>Post a donation <span>→</span></button>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="sun"></div><div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div>
+              <div class="plate"><div class="plate-food food-one"></div><div class="plate-food food-two"></div><div class="plate-food food-three"></div><div class="plate-food food-four"></div><div class="plate-center"></div></div>
+              <div class="art-sprout sprout-one">✳</div><div class="art-sprout sprout-two">✦</div>
+            </div>
+            <span class="hero-decoration decoration-one">✳</span><span class="hero-decoration decoration-two">✦</span>
+          </div>
+
+          <div class="stats-grid" aria-label="Community impact">
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon green">◉</span><span class="stat-label">AVAILABLE NOW</span></div>
+              <div class="stat-value" id="stat-available">—</div>
+              <div class="stat-foot"><span class="tiny-dot"></span>Ready to be picked up</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon orange">♡</span><span class="stat-label">MEALS TO SHARE</span></div>
+              <div class="stat-value" id="stat-meals">—</div>
+              <div class="stat-foot">Across available donations</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon lavender">↗</span><span class="stat-label">IN GOOD HANDS</span></div>
+              <div class="stat-value" id="stat-progress">—</div>
+              <div class="stat-foot">Accepted or being collected</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon mint">✓</span><span class="stat-label">DELIVERED</span></div>
+              <div class="stat-value" id="stat-delivered">—</div>
+              <div class="stat-foot">Donations reaching their people</div>
+            </article>
+          </div>
+
+          <div class="overview-grid">
+            <section class="surface recent-surface">
+              <div class="section-heading">
+                <div><span class="section-kicker">THE LATEST</span><h2>Fresh from the community</h2></div>
+                <button class="text-button" data-go="tracking">See all activity <span>→</span></button>
+              </div>
+              <div class="recent-list" id="recent-list"><div class="loading-state">Gathering community updates…</div></div>
+            </section>
+            <aside class="surface how-card">
+              <span class="section-kicker">HOW IT WORKS</span>
+              <h2>Good food,<br>going further.</h2>
+              <div class="how-step"><span class="step-number">01</span><div><strong>Share what you have</strong><p>Post extra food with a pickup time and place.</p></div></div>
+              <div class="how-step"><span class="step-number">02</span><div><strong>A neighbour steps in</strong><p>A volunteer accepts and collects the donation.</p></div></div>
+              <div class="how-step"><span class="step-number">03</span><div><strong>It finds a welcoming table</strong><p>The food is delivered to a local organisation.</p></div></div>
+              <div class="how-footer"><span>✳</span> Less waste. More community.</div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view-panel" data-panel="donate">
+          <div class="section-page-heading">
+            <p class="eyebrow"><span class="eyebrow-line"></span>GIVE FOOD ANOTHER STORY</p>
+            <h1>Share a <em>good thing.</em></h1>
+            <p class="page-lead">Tell your neighbours what you have. A few details help a volunteer get it to the right place.</p>
+          </div>
+          <div class="donate-layout">
+            <section class="surface form-surface">
+              <div class="form-title"><div class="form-icon">＋</div><div><h2>Donation details</h2><p>Fields marked with * are needed to post.</p></div></div>
+              <form id="donation-form" novalidate>
+                <div class="form-grid">
+                  <label class="field field-wide"><span class="field-label">What food are you sharing? <b>*</b></span><input id="food-type" name="foodType" maxlength="100" placeholder="e.g. Vegetable biryani, fresh fruit" aria-describedby="food-type-error" required><span id="food-type-error" class="field-error" role="alert" hidden></span></label>
+                  <label class="field"><span class="field-label">How many meals? <b>*</b></span><input id="quantity" name="quantity" type="number" min="1" max="100000" step="1" placeholder="e.g. 12" aria-describedby="quantity-error" required><span id="quantity-error" class="field-error" role="alert" hidden></span></label>
+                  <label class="field"><span class="field-label">Best before <small>OPTIONAL</small></span><input id="best-by" name="bestBy" type="datetime-local" aria-describedby="best-by-error"><span id="best-by-error" class="field-error" role="alert" hidden></span></label>
+                  <label class="field field-wide"><span class="field-label">Pickup location <b>*</b></span><input id="location" name="location" maxlength="200" placeholder="Building, street or landmark" aria-describedby="location-error" required><span id="location-error" class="field-error" role="alert" hidden></span></label>
+                  <label class="field field-wide"><span class="field-label">When can it be collected? <b>*</b></span><input id="pickup-time" name="pickupTime" type="datetime-local" aria-describedby="pickup-time-error" required><span id="pickup-time-error" class="field-error" role="alert" hidden></span></label>
+                </div>
+                <div class="form-note"><span>✦</span><p>For everyone’s safety, only share food that has been stored and handled with care.</p></div>
+                <div class="form-actions"><span class="form-hint">Posting as <strong id="posting-as">sign in required</strong></span><button class="button button-primary" type="submit">Post donation <span>→</span></button></div>
+              </form>
+            </section>
+            <aside class="donate-aside">
+              <div class="tip-card"><span class="tip-icon">✳</span><span class="section-kicker">A SMALL TIP</span><h3>Clear details make quick pickups.</h3><p>Add a familiar landmark and a realistic pickup window so volunteers can plan their route.</p></div>
+              <div class="aside-stat"><span class="aside-stat-number" id="donate-total">—</span><span>community donations shared so far</span></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view-panel" data-panel="volunteer">
+          <div class="section-page-heading volunteer-heading">
+            <div><p class="eyebrow"><span class="eyebrow-line"></span>NEARBY GOOD THINGS</p><h1>Find food to <em>rescue.</em></h1><p class="page-lead">Choose a donation to collect. Accepting it creates a pickup request for the demo volunteer.</p></div>
+            <div class="available-pill"><span class="tiny-dot"></span><strong id="volunteer-count">0</strong> available</div>
+          </div>
+          <div class="toolbar surface">
+            <label class="search-box"><span>⌕</span><input id="donation-search" type="search" placeholder="Search food or location…" aria-label="Search donations"></label>
+            <button class="button button-secondary compact" id="refresh-button"><span>↻</span> Refresh</button>
+          </div>
+          <div class="donation-grid" id="volunteer-list"><div class="loading-state">Looking for available donations…</div></div>
+        </section>
+
+        <section class="view-panel" data-panel="tracking">
+          <div class="section-page-heading">
+            <p class="eyebrow"><span class="eyebrow-line"></span>FROM OFFER TO DELIVERY</p>
+            <h1>Every step, <em>in sight.</em></h1>
+            <p class="page-lead">Follow donations as they move from available to accepted, collected and delivered.</p>
+          </div>
+          <section class="surface tracking-surface">
+            <div class="section-heading tracking-heading"><div><span class="section-kicker">COMMUNITY ACTIVITY</span><h2>Donation tracker</h2></div><span class="live-label"><i></i>Updates from MySQL</span></div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>DONATION</th><th>MEALS</th><th>PICKUP</th><th>STATUS</th><th>NEXT STEP</th></tr></thead>
+                <tbody id="tracking-body"><tr><td colspan="5" class="loading-cell">Loading donation activity…</td></tr></tbody>
+              </table>
+            </div>
+          </section>
+          <div class="workflow-strip"><span class="workflow-title">THE JOURNEY</span><span class="workflow-item"><i class="workflow-dot available"></i>Available</span><b>→</b><span class="workflow-item"><i class="workflow-dot accepted"></i>Accepted</span><b>→</b><span class="workflow-item"><i class="workflow-dot collected"></i>Collected</span><b>→</b><span class="workflow-item"><i class="workflow-dot delivered"></i>Delivered</span></div>
+        </section>
+      <section class="view-panel" data-panel="notifications">
+          <div class="section-page-heading"><p class="eyebrow"><span class="eyebrow-line"></span>YOUR COMMUNITY UPDATES</p><h1>Good news, <em>delivered.</em></h1><p class="page-lead">Updates about pickups, deliveries and your shared food.</p></div>
+          <div class="surface notification-list" id="notification-list"><div class="empty-state">Sign in to see your notifications.</div></div>
+        </section>
+        <section class="view-panel" data-panel="reports">
+          <div class="section-page-heading"><p class="eyebrow"><span class="eyebrow-line"></span>COMMUNITY IMPACT</p><h1>Your work, <em>in numbers.</em></h1><p class="page-lead">A report of the donations handled by volunteers in your organization.</p></div>
+          <div class="stats-grid report-grid"><article class="stat-card"><div class="stat-label">PICKUPS ASSIGNED</div><div class="stat-value" id="report-assigned">—</div><div class="stat-foot">Accepted by your volunteers</div></article><article class="stat-card"><div class="stat-label">DELIVERIES COMPLETED</div><div class="stat-value" id="report-delivered">—</div><div class="stat-foot">Food that reached an organization</div></article><article class="stat-card"><div class="stat-label">MEALS DELIVERED</div><div class="stat-value" id="report-meals">—</div><div class="stat-foot">Meals delivered by your team</div></article></div>
+        </section>
+      </div>
+      <footer class="page-footer"><span>Made for neighbours, with care.</span><span>NourishNet · OOP project preview</span></footer>
+    </main>
+  </div>
+  <dialog class="app-dialog" id="auth-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close">×</button></form>
+    <div class="dialog-heading"><span class="section-kicker">NOURISHNET ACCOUNT</span><h2 id="auth-title">Welcome back</h2><p id="auth-subtitle">Sign in to continue to your workspace.</p></div>
+    <form id="login-form" class="dialog-form">
+      <label class="field">Email<input name="email" type="email" maxlength="100" autocomplete="email" required></label>
+      <label class="field">Password<input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="button button-primary dialog-submit" type="submit">Sign in</button>
+      <p class="dialog-switch">New to NourishNet? <button type="button" class="text-button" data-auth-mode="register">Create an account</button></p>
+    </form>
+    <form id="register-form" class="dialog-form" hidden>
+      <div class="form-grid">
+        <label class="field">Full name<input name="name" maxlength="100" autocomplete="name" required></label>
+        <label class="field">Email<input name="email" type="email" maxlength="100" autocomplete="email" required></label>
+        <label class="field">Phone <small>OPTIONAL</small><input name="phone" maxlength="15" autocomplete="tel"></label>
+        <label class="field">Account type<select name="role" id="account-role" required><option value="DONOR">Donor</option><option value="VOLUNTEER">Volunteer</option><option value="NGO">NGO</option></select></label>
+        <label class="field org-only" hidden>Organization name<input name="organizationName" maxlength="100"></label>
+        <label class="field org-only" hidden>Organization address<input name="address" maxlength="200"></label>
+        <label class="field volunteer-only" hidden>Join organization<select name="organizationId" id="organization-select"><option value="">Choose an organization</option></select></label>
+        <label class="field field-wide">Password <small>8 CHARACTERS MINIMUM</small><input name="password" type="password" minlength="8" autocomplete="new-password" required></label>
+      </div>
+      <button class="button button-primary dialog-submit" type="submit">Create account</button>
+      <p class="dialog-switch">Already registered? <button type="button" class="text-button" data-auth-mode="login">Sign in</button></p>
+    </form>
+  </dialog>
+  <dialog class="app-dialog" id="edit-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close">×</button></form>
+    <div class="dialog-heading"><span class="section-kicker">EDIT YOUR OFFER</span><h2>Update donation</h2><p>You can edit the details while the donation is still available.</p></div>
+    <form id="edit-form" class="dialog-form">
+      <input type="hidden" name="id">
+      <div class="form-grid">
+        <label class="field field-wide">Food name<input name="foodType" maxlength="100" required></label>
+        <label class="field">Meals<input name="quantity" type="number" min="1" max="100000" step="1" required></label>
+        <label class="field">Best before <small>OPTIONAL</small><input name="bestBy" type="datetime-local"></label>
+        <label class="field field-wide">Pickup location<input name="location" maxlength="200" required></label>
+        <label class="field field-wide">Pickup date and time<input name="pickupTime" type="datetime-local" required></label>
+      </div>
+      <button class="button button-primary dialog-submit" type="submit">Save changes</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
+
+
+
